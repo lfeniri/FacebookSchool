@@ -94,7 +94,7 @@ app.get('/webhook', function (req, res) {
 });
 
 app.get('/quiz', function (req, res) {
-	res.setHeader('Content-Type', type);
+	res.setHeader('Content-Type', "text/html");
   res.write("<html><head>"+
     "<title>Select Criteria</title>"+
   "</head>"+
