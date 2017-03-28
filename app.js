@@ -120,7 +120,7 @@ app.post('/webhook/', function (req, res) {
     var event = req.body.entry[0].messaging[i];
     var senderID = event.sender.id;
 
-	if (event.message &&  event.message.text) {
+	if (event.message &&  event.message.quick_reply) {
 	   var message = event.message;
 	   console.log(message.quick_reply.payload);
 	   if( message.quick_reply.payload == "CREATE_USER"){
