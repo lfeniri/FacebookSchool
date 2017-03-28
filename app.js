@@ -138,22 +138,16 @@ app.post('/webhook/', function (req, res) {
 		});
 		
 		var messageData = { 
-			"text":"Would you want to subscribe ?",
-			"quick_replies":[
-			  {
-				"content_type":"text",
-				"title":"No",
-				"payload":"NO"
-			  }
-			],
 			"buttons":[
-			  {
-				"type":"web_url",
-				"url":"https://facebookschool.herokuapp.com/quiz",
-				"title":"YES",
-				"webview_height_ratio": "compact"
-			  }
-			]
+      {
+        "type":"web_url",
+        "url":"https://petersfancyapparel.com/criteria_selector",
+        "title":"Select Criteria",
+        "webview_height_ratio": "full",
+        "messenger_extensions": true,  
+        
+      }
+    ]
 		};
 		
 		
