@@ -137,17 +137,30 @@ app.post('/webhook/', function (req, res) {
 			console.log(res);
 		});
 		
-		var messageData = { 
-			"buttons":[
-      {
-        "type":"web_url",
-        "url":"https://facebookschool.herokuapp.com/quiz",
-        "title":"Select Criteria",
-        "webview_height_ratio": "full",
-        "messenger_extensions": true,
+		var messageData = {
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"button",
+        "text":"What do you want to do next?",
+        "buttons":[
+		{
+			"type":"web_url",
+			"url":"https://facebookschool.herokuapp.com/quiz",
+			"title":"Select Criteria",
+			"webview_height_ratio": "full",
+			"messenger_extensions": true,
+		  },
+          {
+            "type":"postback",
+            "title":"NO",
+            "payload":"NO_USER_CREATION"
+          }
+        ]
       }
-    ]
-		};
+	}
+	};
+		
 		
 		
 		sendMessage(senderID,tokenHTC,messageData);
