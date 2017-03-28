@@ -3,10 +3,12 @@ var app = express();
 var request = require("request");
 var bodyparser = require("body-parser");
 var Student = require("./Student");
+var Teacher = require("./Teacher");
+
 
 var tokenHTC = "EAABuaW7sR7QBAA3JbeMvU52cRkgl1a3vSAbu6k1bL2ZAMyTDLcv8HOK7tidv3QC5sAuHKSBZC1JEZCGWwVizzUZBMZCBzOAgEZCPLyzeP5DySYZBlKpGK4YiSR3pTIxk32lRt7rcUeDe5cIPv4EpNmUNcbi821Oa2uez8EB2ZB70mAZDZD";
 
-var messageData = {
+/*var messageData = {
     "attachment":{
       "type":"template",
       "payload":{
@@ -61,7 +63,7 @@ var messageData = {
     }
 };
 
-
+*/
 function sendMessage(sender,token, messageData) {
    
   request({
@@ -102,23 +104,35 @@ app.post('/webhook/', function (req, res) {
 	if (event.message &&  event.message.text) {
 	   var text = event.message.text;
 	   if(text == "create"){
-		request({
-			url: "https://graph.facebook.com/"+senderID,
-			qs: {access_token:tokenHTC},
-			method: 'GET',
-		  }, function(error, response, body) {
-			 console.log(body);
-			if (error) {
-			  console.log('Error sending message: ', error);
-			} else if (response.body.error) {
-			  console.log('Error: ', response.body.error);
-			}
-		  });
-	  }
-		  
 	  
-	  
-		Student.getStudent("234",function(res){console.log(res);});
+	   }
+		
+		Student.getStudent(senderID,function(res){
+			if(res == undefined) return;
+			console.log(res);
+		});
+		
+		Teacher.getTeacher(senderID,function(res){
+		if(res == undefined) return;
+			console.log(res);
+		});
+		
+		var messageData = { 
+			text:"Would you want to subscribe ?",
+			"quick_replies":[
+			  {
+				"content_type":"text",
+				"title":"Yes",
+				"payload":"{req:'create_user'}"
+			  },
+			  {
+				"content_type":"text",
+				"title":"No",
+				"payload":"{req:'no_create_user'}"
+			  }
+			]
+		}
+		
 		sendMessage(senderID,tokenHTC,messageData);
 	}
   }

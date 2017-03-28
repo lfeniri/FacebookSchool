@@ -2,9 +2,10 @@ var DB = require("nosql");
 
 var teacher = DB.load('./DB/teacher.nosql');
 
-function Teacher(id,name,courses){
+function Teacher(id,last_name,first_name,courses){
 	this.id = id;
-	this.name = name;
+	this.last_name = last_name;
+	this.last_name = first_name;
 	this.courses = courses;
 }
 
@@ -12,7 +13,8 @@ function Teacher(id,name,courses){
 Teacher.prototype.save = function() {
 var t = new Object();
 t.id = this.id;
-t.name = this.name;
+t.last_name = this.last_name;
+t.first_name = this.first_name;
 t.courses = this.courses;
 teacher.insert(t);
 }
@@ -23,8 +25,8 @@ Teacher.getTeacher = function(id,callback){
     filter.where('id', '=', id);
 	filter.callback(function(err,response) {
 		var r = response[0];
-		if(r == undefined) return undefined;
-		 var t = new Teacher(r.id,r.name,r.courses);
+		if(r == undefined) {callback(undefined);return ;}
+		 var t = new Teacher(r.id,r.last_name,r.first_name,r.courses);
 		 callback(t) ;
 		});
 	});

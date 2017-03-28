@@ -16,7 +16,7 @@ quiz.find().make(function(filter) {
  */
  
 //Teacher.getTeacher("2354",function(res){res.print();});
-Student.getStudent("234",function(res){console.log(res);});
+Student.getStudent("2344",function(res){if(res == undefined)console.log("NO ONE");console.log("OK = "res);});
 //t.print();
 /*
 var teacher1 = new Teacher("2354","Yacine");
