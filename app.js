@@ -148,7 +148,7 @@ app.post('/webhook/', function (req, res) {
 			"type":"web_url",
 			"url":"https://facebookschool.herokuapp.com/quiz",
 			"title":"YES",
-			"webview_height_ratio": "full",
+			"webview_height_ratio": "compact",
 			"messenger_extensions": true,
 		  },
           {
