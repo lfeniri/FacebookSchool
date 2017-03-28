@@ -98,6 +98,16 @@ app.get('/quiz', function (req, res) {
   res.write("<html><head>"+
     "<title>Select Criteria</title>"+
   "</head>"+
+  "<body>"+
+  "<script>"+
+"(function(d, s, id){"+
+  "var js, fjs = d.getElementsByTagName(s)[0];"+
+ " if (d.getElementById(id)) {return;}"+
+ " js = d.createElement(s); js.id = id;"+
+ " js.src = '//connect.facebook.com/en_US/messenger.Extensions.js';"+
+ " fjs.parentNode.insertBefore(js, fjs);"+
+"}(document, 'script', 'Messenger'));"+
+"</script> </body>"+
 "</html>");
 	res.end();
 });
