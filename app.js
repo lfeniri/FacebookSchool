@@ -98,11 +98,10 @@ app.post('/webhook/', function (req, res) {
   for (i = 0; i < messaging_events.length; i++) {
     var event = req.body.entry[0].messaging[i];
     var senderID = event.sender.id;
-	var text = event.message.text;
-	
-	if (event.message && text) {
-      
-	  if(text == "create"){
+
+	if (event.message &&  event.message.text) {
+	   var text = event.message.text;
+	   if(text == "create"){
 		request({
 			url: "https://graph.facebook.com/"+senderID,
 			qs: {access_token:token},
