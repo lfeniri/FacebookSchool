@@ -121,10 +121,10 @@ app.post('/webhook/', function (req, res) {
     var senderID = event.sender.id;
 
 	if (event.message &&  event.message.text) {
-	   var text = event.message.text;
-	   console.log(event.message);
-	   if(text == "create"){
-	  
+	   var message = event.message;
+	   console.log(message.quick_reply.payload);
+	   if( message.quick_reply.payload == "CREATE_USER"){
+		
 	   }
 		
 		Student.getStudent(senderID,function(res){
@@ -138,17 +138,20 @@ app.post('/webhook/', function (req, res) {
 		});
 		
 		var messageData = { 
-			text:"Would you want to subscribe ?",
+			"text":"Would you want to subscribe ?",
 			"quick_replies":[
 			  {
 				"content_type":"text",
-				"title":"Yes",
-				"payload":"{req:'create_user'}"
-			  },
-			  {
-				"content_type":"text",
 				"title":"No",
-				"payload":"{req:'no_create_user'}"
+				"payload":"NO"
+			  }
+			],
+			"buttons":[
+			  {
+				"type":"web_url",
+				"url":"https://facebookschool.herokuapp.com/quiz",
+				"title":"YES",
+				"webview_height_ratio": "compact"
 			  }
 			]
 		};
