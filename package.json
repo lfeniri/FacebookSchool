@@ -1,0 +1,31 @@
+{
+  "name": "facebookschool",
+  "version": "1.0.0",
+  "description": "be friend with your teacher in facebook",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lfeniri/FacebookSchool.git"
+  },
+  "keywords": [
+    "facebook",
+    "messenger",
+    "school",
+    "quiz"
+  ],
+  "author": "lfeniri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lfeniri/FacebookSchool/issues"
+  },
+  "homepage": "https://github.com/lfeniri/FacebookSchool#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "nosql": "^5.0.3",
+    "request": "^2.81.0"
+  }
+}
