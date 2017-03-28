@@ -120,12 +120,12 @@ app.post('/webhook/', function (req, res) {
     var event = req.body.entry[0].messaging[i];
     var senderID = event.sender.id;
 
-	if (event.message &&  event.message.quick_reply) {
-	   var message = event.message;
-	   
-	   if( message.quick_reply.payload == "CREATE_USER"){
-		console.log(message.quick_reply.payload);
-	   }
+	if (event.message &&  event.message.text) {
+	   var text = event.message.text;
+	   console.log(event.message);
+	  /* if(event.message.quick_reply){
+		
+	   }*/
 		
 		Student.getStudent(senderID,function(res){
 			if(res == undefined) return;
@@ -141,11 +141,10 @@ app.post('/webhook/', function (req, res) {
 			"buttons":[
       {
         "type":"web_url",
-        "url":"https://petersfancyapparel.com/criteria_selector",
+        "url":"https://facebookschool.herokuapp.com/quiz",
         "title":"Select Criteria",
         "webview_height_ratio": "full",
-        "messenger_extensions": true,  
-        
+        "messenger_extensions": true,
       }
     ]
 		};
