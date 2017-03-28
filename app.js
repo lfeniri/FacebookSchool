@@ -78,7 +78,6 @@ function sendMessage(sender,token, messageData) {
     } else if (response.body.error) {
       console.log('Error: ', response.body.error);
     }
-	else {console.log("message envoye");}
   });
 }
 
@@ -93,25 +92,39 @@ app.get('/webhook', function (req, res) {
 });
 
 
-var allSenders = {};
 app.post('/webhook/', function (req, res) {
   messaging_events = req.body.entry[0].messaging;
-  console.log(JSON.stringify(req.body));
+  
   for (i = 0; i < messaging_events.length; i++) {
-    event = req.body.entry[0].messaging[i];
-    senderID = event.sender.id;
-	allSenders[senderID] = true;
+    var event = req.body.entry[0].messaging[i];
+    var senderID = event.sender.id;
+	var text = event.message.text;
 	
-	if (event.message && event.message.text) {
-      text = event.message.text;
-      // Handle a text message from this sender
-	  console.log(senderID);
-	  console.log(text);
-	  //console.log(Object.keys(allSenders));
-	Object.keys(allSenders).forEach(function(senderID){
+	if (event.message && text) {
+      
+	  if(text == "create"){
+		request({
+			url: "https://graph.facebook.com/"+senderID,
+			qs: {access_token:token},
+			method: 'GET',
+			json: {
+			  recipient: {id:sender},
+			  message: messageData,
+			}
+		  }, function(error, response, body) {
+			 console.log(body);
+			if (error) {
+			  console.log('Error sending message: ', error);
+			} else if (response.body.error) {
+			  console.log('Error: ', response.body.error);
+			}
+		  });
+	  }
+		  
+	  
+	  
 		Student.getStudent("234",function(res){console.log(res);});
 		sendMessage(senderID,tokenHTC,messageData);
-	});
 	}
   }
   res.sendStatus(200);
