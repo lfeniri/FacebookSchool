@@ -96,7 +96,7 @@ app.get('/webhook', function (req, res) {
 var allSenders = {};
 app.post('/webhook/', function (req, res) {
   messaging_events = req.body.entry[0].messaging;
-  console.log(req.body.entry);
+  console.log(JSON.stringify(req.body));
   for (i = 0; i < messaging_events.length; i++) {
     event = req.body.entry[0].messaging[i];
     senderID = event.sender.id;
