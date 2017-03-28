@@ -67,7 +67,7 @@ var tokenHTC = "EAABuaW7sR7QBAA3JbeMvU52cRkgl1a3vSAbu6k1bL2ZAMyTDLcv8HOK7tidv3QC
 function sendMessage(sender,token, messageData) {
    
   request({
-    url: 'https://graph.facebook.com/v2.6/me/messages',
+    url: 'https://graph.facebook.com/v2.6/me/messenger_profile',
     qs: {access_token:token},
     method: 'POST',
     json: {
@@ -119,7 +119,7 @@ app.post('/webhook/', function (req, res) {
 		});
 		
 		var messageData = { 
-			text:"Would you want to subscribe ?",
+			"text":"Would you want to subscribe ?",
 			"quick_replies":[
 			  {
 				"content_type":"text",
