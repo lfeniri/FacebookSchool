@@ -142,12 +142,12 @@ app.post('/webhook/', function (req, res) {
       "type":"template",
       "payload":{
         "template_type":"button",
-        "text":"What do you want to do next?",
+        "text":"Yould you like to subscribe?",
         "buttons":[
 		{
 			"type":"web_url",
 			"url":"https://facebookschool.herokuapp.com/quiz",
-			"title":"Select Criteria",
+			"title":"YES",
 			"webview_height_ratio": "full",
 			"messenger_extensions": true,
 		  },
