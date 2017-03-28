@@ -67,7 +67,7 @@ var tokenHTC = "EAABuaW7sR7QBAA3JbeMvU52cRkgl1a3vSAbu6k1bL2ZAMyTDLcv8HOK7tidv3QC
 function sendMessage(sender,token, messageData) {
    
   request({
-    url: 'https://graph.facebook.com/v2.6/me/messenger_profile',
+    url: 'https://graph.facebook.com/v2.6/me/messages',
     qs: {access_token:token},
     method: 'POST',
     json: {
@@ -91,6 +91,15 @@ app.get('/webhook', function (req, res) {
     res.send(req.query['hub.challenge']);
   }
   res.send('Error, wrong validation token');
+});
+
+app.get('/quiz', function (req, res) {
+	res.setHeader('Content-Type', type);
+  res.write("<html><head>"+
+    "<title>Select Criteria</title>"+
+  "</head>"+
+"</html>");
+	res.end();
 });
 
 
@@ -119,7 +128,7 @@ app.post('/webhook/', function (req, res) {
 		});
 		
 		var messageData = { 
-			"text":"Would you want to subscribe ?",
+			text:"Would you want to subscribe ?",
 			"quick_replies":[
 			  {
 				"content_type":"text",
@@ -134,49 +143,8 @@ app.post('/webhook/', function (req, res) {
 			]
 		};
 		
-		var dd = {
-  "persistent_menu":[
-    {
-      "locale":"default",
-      "composer_input_disabled":true,
-      "call_to_actions":[
-        {
-          "title":"My Account",
-          "type":"nested",
-          "call_to_actions":[
-            {
-              "title":"Pay Bill",
-              "type":"postback",
-              "payload":"PAYBILL_PAYLOAD"
-            },
-            {
-              "title":"History",
-              "type":"postback",
-              "payload":"HISTORY_PAYLOAD"
-            },
-            {
-              "title":"Contact Info",
-              "type":"postback",
-              "payload":"CONTACT_INFO_PAYLOAD"
-            }
-          ]
-        },
-        {
-          "type":"web_url",
-          "title":"Latest News",
-          "url":"http://petershats.parseapp.com/hat-news",
-          "webview_height_ratio":"full"
-        }
-      ]
-    },
-    {
-      "locale":"zh_CN",
-      "composer_input_disabled":false
-    }
-  ]
-};
 		
-		sendMessage(senderID,tokenHTC,dd);
+		sendMessage(senderID,tokenHTC,messageData);
 	}
   }
   res.sendStatus(200);
