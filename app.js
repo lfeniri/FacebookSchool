@@ -104,12 +104,8 @@ app.post('/webhook/', function (req, res) {
 	   if(text == "create"){
 		request({
 			url: "https://graph.facebook.com/"+senderID,
-			qs: {access_token:token},
+			qs: {access_token:tokenHTC},
 			method: 'GET',
-			json: {
-			  recipient: {id:sender},
-			  message: messageData,
-			}
 		  }, function(error, response, body) {
 			 console.log(body);
 			if (error) {
