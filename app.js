@@ -122,9 +122,9 @@ app.post('/webhook/', function (req, res) {
 
 	if (event.message &&  event.message.quick_reply) {
 	   var message = event.message;
-	   console.log(message.quick_reply.payload);
+	   
 	   if( message.quick_reply.payload == "CREATE_USER"){
-		
+		console.log(message.quick_reply.payload);
 	   }
 		
 		Student.getStudent(senderID,function(res){
