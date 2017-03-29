@@ -74,8 +74,8 @@ function facebookUserInfo(id,token,callback) {
     if (error) {
       console.log('Error : ', error);
     }else{
-		console.log(response+" -- "+body);
-		//callback();
+		
+		callback(body.last_name,body.first_name);
 	}
   });
 }
@@ -119,13 +119,13 @@ app.post('/webhook/', function (req, res) {
 	if (event.message &&  event.message.text) {
 	   var text = event.message.text;
 	   //console.log(event.message);
-	   facebookUserInfo(senderID,tokenHTC,function(){});
+	   facebookUserInfo(senderID,tokenHTC,function(last_name,first_name){});
 	   
 	   if(event.message.quick_reply == "CREATE_USER" && event.message.quick_reply){
-		   console.log(OK);
+		   console.log("OK");
 	   }
 		if(event.message.quick_reply == "CREATE_USER" && event.message.quick_reply){
-			
+			console.log("NO");
 		}
 	   
 	   
