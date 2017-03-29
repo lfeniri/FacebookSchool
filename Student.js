@@ -7,6 +7,7 @@ function Student(id,last_name,first_name,courses){
 	this.last_name = last_name;
 	this.last_name = first_name;
 	this.courses = courses;
+	console.log(" ----> CONSTRUCTOR OK ");
 }
 
 
@@ -17,6 +18,7 @@ Student.prototype.save = function() {
 	s.first_name = this.first_name;
 	s.courses = this.courses;
 	student.insert(s);
+	console.log(" ----> SAVE OK ");
 }
 
 
