@@ -144,14 +144,14 @@ app.post('/webhook/', function (req, res) {
 		   if(event.message.quick_reply.payload == "CREATE_USER_TEACHER"){
 			   console.log("TEACHER CREATION");
 				facebookUserInfo(senderID,tokenHTC,function(last_name,first_name){
-					Teacher t = new Teacher(senderID,last_name,first_name,[]);
+					var t = new Teacher(senderID,last_name,first_name,[]);
 					t.save();
 				});
 		   }
 		   if(event.message.quick_reply.payload == "CREATE_USER_STUDENT"){
 			   console.log("STUDENT CREATION");
 				facebookUserInfo(senderID,tokenHTC,function(last_name,first_name){
-					Student s = new Student(senderID,last_name,first_name,[]);
+					var s = new Student(senderID,last_name,first_name,[]);
 					s.save();
 				});
 		   }
