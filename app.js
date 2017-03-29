@@ -112,6 +112,7 @@ var messageData={};
 app.post('/webhook/', function (req, res) {
   messaging_events = req.body.entry[0].messaging;
   
+  var userExist = false;
   for (i = 0; i < messaging_events.length; i++) {
     var event = req.body.entry[0].messaging[i];
     var senderID = event.sender.id;
@@ -156,9 +157,8 @@ app.post('/webhook/', function (req, res) {
 				messageData = {"text":"THANK YOU :) "};
 				sendMessage(senderID,tokenHTC,messageData);
 		   }
-		  
+		  userExist = true;
 	   }
-	   var userExist = false;
 	   
 		Student.getStudent(senderID,function(res){
 			if(res == undefined) return;
