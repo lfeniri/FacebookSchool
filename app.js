@@ -156,7 +156,7 @@ app.post('/webhook/', function (req, res) {
 				messageData = {"text":"THANK YOU :) "};
 				sendMessage(senderID,tokenHTC,messageData);
 		   }
-		   return;
+		  
 	   }
 	   var userExist = false;
 	   
