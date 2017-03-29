@@ -30,8 +30,12 @@ Once the dependencies are installed, you can run  `node app.js` to start the app
 When you clic in start button and say somthing like hello
 the boot ask you to subscribe :
 ![CLI Preview](imageDemo/ask_for_subscribe.jpg);
+
+---
 answer YES. then choose if you are student of teacher
 ![CLI Preview](imageDemo/ask_for_status.jpg);
+
+---
 You can find more options in menu :
 ![CLI Preview](imageDemo/menu.jpg);
 
