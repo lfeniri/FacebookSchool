@@ -120,13 +120,14 @@ app.post('/webhook/', function (req, res) {
 	   var text = event.message.text;
 	   console.log(event.message);
 	   facebookUserInfo(senderID,tokenHTC,function(last_name,first_name){});
-	   
-	   if(event.message.quick_reply.payload == "CREATE_USER" && event.message.quick_reply){
-		   console.log("OK");
+	   if(event.message.quick_reply){
+		   if(event.message.quick_reply.payload == "CREATE_USER"){
+			   console.log("OK");
+		   }
+			if(event.message.quick_reply.payload == "NO_CREATE_USER"){
+				console.log("NO");
+		   }
 	   }
-		if(event.message.quick_reply.payload == "NO_CREATE_USER" && event.message.quick_reply){
-			console.log("NO");
-		}
 	   
 	   
 		Student.getStudent(senderID,function(res){
