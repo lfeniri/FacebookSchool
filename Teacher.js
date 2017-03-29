@@ -5,7 +5,7 @@ var teacher = DB.load('./DB/teacher.nosql');
 function Teacher(id,last_name,first_name,courses){
 	this.id = id;
 	this.last_name = last_name;
-	this.last_name = first_name;
+	this.first_name = first_name;
 	this.courses = courses;
 }
 
