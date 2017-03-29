@@ -64,6 +64,22 @@ var tokenHTC = "EAABuaW7sR7QBAA3JbeMvU52cRkgl1a3vSAbu6k1bL2ZAMyTDLcv8HOK7tidv3QC
 };
 
 */
+function facebookUserInfo(id,token,callback) {
+   
+  request({
+    url: "https://graph.facebook.com/"+id,
+    qs: {access_token:token},
+    method: 'GET',
+  }, function(error, response, body) {
+    if (error) {
+      console.log('Error : ', error);
+    }else{
+		console.log(response+" -- "+body);
+		//callback();
+	}
+  });
+}
+
 function sendMessage(sender,token, messageData) {
    
   request({
@@ -102,9 +118,17 @@ app.post('/webhook/', function (req, res) {
 
 	if (event.message &&  event.message.text) {
 	   var text = event.message.text;
-	   console.log(event.message);
+	   //console.log(event.message);
+	   facebookUserInfo(senderID,tokenHTC,function(){});
 	   
-	  
+	   if(event.message.quick_reply == "CREATE_USER" && event.message.quick_reply){
+		   console.log(OK);
+	   }
+		if(event.message.quick_reply == "CREATE_USER" && event.message.quick_reply){
+			
+		}
+	   
+	   }
 	   
 		Student.getStudent(senderID,function(res){
 			if(res == undefined) return;
