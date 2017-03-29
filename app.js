@@ -64,6 +64,9 @@ var tokenHTC = "EAABuaW7sR7QBAA3JbeMvU52cRkgl1a3vSAbu6k1bL2ZAMyTDLcv8HOK7tidv3QC
 };
 
 */
+
+app.use(express.static(__dirname + '/public'));
+
 function sendMessage(sender,token, messageData) {
    
   request({
@@ -146,7 +149,7 @@ app.post('/webhook/', function (req, res) {
         "buttons":[
 		{
 			"type":"web_url",
-			"url":"https://facebookschool.herokuapp.com/quiz",
+			"url":"https://facebookschool.herokuapp.com/subscribe.html",
 			"title":"YES",
 			"webview_height_ratio": "compact",
 			"messenger_extensions": true,
