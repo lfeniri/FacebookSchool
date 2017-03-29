@@ -71,7 +71,8 @@ function facebookUserInfo(id,token,callback) {
     qs: {access_token:token},
     method: 'GET',
   }, function(error, response, body) {
-		console.log("FIND NAME = "+ body["first_name"]);
+		var data = JSON.parse(body);
+		console.log("FIND NAME = "+ data.first_name);
 		callback(body.last_name,body.first_name);
   });
 }
