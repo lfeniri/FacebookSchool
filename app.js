@@ -73,7 +73,7 @@ function facebookUserInfo(id,token,callback) {
   }, function(error, response, body) {
 		var data = JSON.parse(body);
 		console.log("FIND NAME = "+ data.first_name);
-		callback(body.last_name,body.first_name);
+		callback(data.last_name,data.first_name);
   });
 }
 
