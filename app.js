@@ -142,15 +142,17 @@ app.post('/webhook/', function (req, res) {
 				  sendMessage(senderID,tokenHTC,messageData);
 		   }
 		   if(event.message.quick_reply.payload == "CREATE_USER_TEACHER"){
-			   console.log("OK");
+			   console.log("TEACHER CREATION");
 				facebookUserInfo(senderID,tokenHTC,function(last_name,first_name){
-
+					Teacher t = new Teacher(senderID,last_name,first_name,[]);
+					t.save();
 				});
 		   }
 		   if(event.message.quick_reply.payload == "CREATE_USER_STUDENT"){
-			   console.log("OK");
+			   console.log("STUDENT CREATION");
 				facebookUserInfo(senderID,tokenHTC,function(last_name,first_name){
-
+					Student s = new Student(senderID,last_name,first_name,[]);
+					s.save();
 				});
 		   }
 			if(event.message.quick_reply.payload == "NO_CREATE_USER"){
