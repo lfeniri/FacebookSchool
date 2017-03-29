@@ -118,13 +118,13 @@ app.post('/webhook/', function (req, res) {
 
 	if (event.message &&  event.message.text) {
 	   var text = event.message.text;
-	   //console.log(event.message);
+	   console.log(event.message);
 	   facebookUserInfo(senderID,tokenHTC,function(last_name,first_name){});
 	   
 	   if(event.message.quick_reply == "CREATE_USER" && event.message.quick_reply){
 		   console.log("OK");
 	   }
-		if(event.message.quick_reply == "CREATE_USER" && event.message.quick_reply){
+		if(event.message.quick_reply == "NO_CREATE_USER" && event.message.quick_reply){
 			console.log("NO");
 		}
 	   
