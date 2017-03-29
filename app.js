@@ -100,12 +100,12 @@ app.get('/subscribe', function (req, res) {
 	res.setHeader('Content-Type', "text/html");
 	var exist = false;
 
-	Student.getStudent(senderID,function(res){
+	Student.getStudent(req.query.id,function(res){
 			if(res == undefined) return;
 			exist = true;
 		});
 		
-		Teacher.getTeacher(senderID,function(res){
+		Teacher.getTeacher(req.query.id,function(res){
 		if(res == undefined) return;
 			exist = true;
 		});
