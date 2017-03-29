@@ -26,16 +26,19 @@ Once the dependencies are installed, you can run  `node app.js` to start the app
 
 ---
 
-## ScreenShoot of test Application
-
+## ScreenShot of test Application
+When you clic in start button and say somthing like hello
+the boot ask you to subscribe :
 ![CLI Preview](imageDemo/ask_for_subscribe.jpg);
+answer YES. then choose if you are student of teacher
 ![CLI Preview](imageDemo/ask_for_status.jpg);
+You can find more options in menu :
 ![CLI Preview](imageDemo/menu.jpg);
 
 
 ---
 
 ## License
->You can check out the full license [here](https://github.com/IgorAntun/node-chat/blob/master/LICENSE)
+>You can check out the full license 	
 
 This project is licensed under the terms of the **MIT** license.
