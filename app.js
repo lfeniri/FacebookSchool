@@ -105,10 +105,7 @@ app.post('/webhook/', function (req, res) {
 	   var text = event.message.text;
 	   console.log(event.message);
 	   
-	   if(event.message.quick_reply){
-		if(event.message.quick_reply == )
 	   
-	   }
 	   
 		Student.getStudent(senderID,function(res){
 			if(res == undefined) return;
