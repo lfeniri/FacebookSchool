@@ -108,7 +108,7 @@ app.get('/webhook', function (req, res) {
   }
   res.send('Error, wrong validation token');
 });
-
+var messageData="";
 app.post('/webhook/', function (req, res) {
   messaging_events = req.body.entry[0].messaging;
   
@@ -119,29 +119,59 @@ app.post('/webhook/', function (req, res) {
 	if (event.message &&  event.message.text) {
 	   var text = event.message.text;
 	   console.log(event.message);
-	   facebookUserInfo(senderID,tokenHTC,function(last_name,first_name){});
+	   
 	   if(event.message.quick_reply){
 		   if(event.message.quick_reply.payload == "CREATE_USER"){
+					messageData = {
+					"text":"Are you :",
+					"quick_replies":[
+					  {
+						"content_type":"text",
+						"title":"TEACHER",
+						"payload":"CREATE_USER_TEACHER"
+					  },
+					  {
+						"content_type":"text",
+						"title":"STUDENT",
+						"payload":"CREATE_USER_STUDENT"
+					  }
+					]
+				  };
+				  sendMessage(senderID,tokenHTC,messageData);
+		   }
+		   if(event.message.quick_reply.payload == "CREATE_USER_TEACHER"){
 			   console.log("OK");
+				facebookUserInfo(senderID,tokenHTC,function(last_name,first_name){
+
+				});
+		   }
+		   if(event.message.quick_reply.payload == "CREATE_USER_STUDENT"){
+			   console.log("OK");
+				facebookUserInfo(senderID,tokenHTC,function(last_name,first_name){
+
+				});
 		   }
 			if(event.message.quick_reply.payload == "NO_CREATE_USER"){
-				console.log("NO");
+				sendMessage(senderID,tokenHTC,"THANK YOU");
 		   }
+		   return;
 	   }
-	   
+	   var userExist = false;
 	   
 		Student.getStudent(senderID,function(res){
 			if(res == undefined) return;
+			userExist = true;
 			console.log(res);
 			
 		});
 		
 		Teacher.getTeacher(senderID,function(res){
-		if(res == undefined) return;
+			if(res == undefined) return;
+			userExist = true;
 			console.log(res);
 		});
-		
-		var messageData = {
+		if(userExist) return;
+		messageData = {
 		"text":"Would you like to subscribe:",
 		"quick_replies":[
 		  {
