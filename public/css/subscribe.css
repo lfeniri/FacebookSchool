@@ -3,6 +3,24 @@ label {
 	width:180px;
 }
 
+
+form{
+	width: 80%;
+	height: 80%;
+}
+
+
+#last_name{
+	width: 60%;
+	height: 40%;
+}
+
+
+#first_name{
+	width: 60%;
+	height: 40%;
+}
+
 input, 
 select, 
 textarea, 
