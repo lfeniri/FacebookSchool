@@ -152,6 +152,7 @@ app.post('/webhook/', function (req, res) {
 			   console.log("STUDENT CREATION");
 				facebookUserInfo(senderID,tokenHTC,function(last_name,first_name){
 					var s = new Student(senderID,last_name,first_name,[]);
+					console.log(s);
 					s.save();
 				});
 		   }
