@@ -84,7 +84,7 @@ function sendMessage(sender,token, messageData) {
 }
 
 
-var allSenders = {};
+
 app.use(bodyparser.json());
 app.get('/webhook', function (req, res) {
   if (req.query['hub.verify_token'] === 'test_verifier') {
@@ -99,13 +99,12 @@ app.post('/webhook/', function (req, res) {
   for (i = 0; i < messaging_events.length; i++) {
     var event = req.body.entry[0].messaging[i];
     var senderID = event.sender.id;
-	allSenders[senderID] = true;
 
 	if (event.message &&  event.message.text) {
 	   var text = event.message.text;
 	   console.log(event.message);
 	   
-	   
+	  
 	   
 		Student.getStudent(senderID,function(res){
 			if(res == undefined) return;
@@ -134,9 +133,9 @@ app.post('/webhook/', function (req, res) {
 		]
 	  };
 		
-		Object.keys(allSenders).forEach(function(senderID){
+		
+		
 		sendMessage(senderID,tokenHTC,messageData);
-	});
 	}
   }
   res.sendStatus(200);
