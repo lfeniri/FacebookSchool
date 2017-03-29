@@ -64,9 +64,6 @@ var tokenHTC = "EAABuaW7sR7QBAA3JbeMvU52cRkgl1a3vSAbu6k1bL2ZAMyTDLcv8HOK7tidv3QC
 };
 
 */
-
-app.use(express.static(__dirname + '/public'));
-
 function sendMessage(sender,token, messageData) {
    
   request({
@@ -96,32 +93,6 @@ app.get('/webhook', function (req, res) {
   res.send('Error, wrong validation token');
 });
 
-app.get('/subscribe', function (req, res) {
-	res.setHeader('Content-Type', "text/html");
-	var exist = false;
-
-	Student.getStudent(req.query.id,function(res){
-			if(res == undefined) return;
-			exist = true;
-		});
-		
-		Teacher.getTeacher(req.query.id,function(res){
-		if(res == undefined) return;
-			exist = true;
-		});
-	console.log("is Exist : " + exist);
-	if(!exist){
-		var std = new Student(req.query.id,req.query.last_name,req.query.first_name,[]);
-		std.save();
-		res.write("{'result':'OK'}");
-	}else{
-		res.write("{'result':'USER_EXIST'}");
-	}
-  
-	res.end();
-});
-
-
 app.post('/webhook/', function (req, res) {
   messaging_events = req.body.entry[0].messaging;
   
@@ -147,36 +118,20 @@ app.post('/webhook/', function (req, res) {
 		});
 		
 		var messageData = {
-    "attachment":{
-      "type":"template",
-      "payload":{
-        "template_type":"generic",
-        "elements":[
-           {
-            "title":"1+2 = 3",
-            "subtitle":"is this rigth?",
-            "default_action": {
-				 "type":"postback",
-                "title":"HI",
-                "payload":"HI"
-            },
-            "buttons":[
-              {
-                "type":"postback",
-                "title":"YES",
-                "payload":"YES"
-              },
-				{
-                "type":"postback",
-                "title":"NO",
-                "payload":"NO"
-              }                 
-            ]      
-          }
-        ]
-      }
-	}
-	}
+		"text":"Pick a color:",
+		"quick_replies":[
+		  {
+			"content_type":"text",
+			"title":"Red",
+			"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
+		  },
+		  {
+			"content_type":"text",
+			"title":"Green",
+			"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"
+		  }
+		]
+	  };
 		
 		
 		
