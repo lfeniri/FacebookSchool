@@ -172,7 +172,7 @@ app.post('/webhook/', function (req, res) {
 			userExist = true;
 			console.log(res);
 		});
-		if(userExist){
+		if(!userExist){
 		messageData = {
 		"text":"Would you like to subscribe:",
 		"quick_replies":[
@@ -188,9 +188,8 @@ app.post('/webhook/', function (req, res) {
 		  }
 		]
 		};
+		sendMessage(senderID,tokenHTC,messageData);
 	}
-		
-	sendMessage(senderID,tokenHTC,messageData);
 	}
   }
   res.sendStatus(200);
