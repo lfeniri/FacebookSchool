@@ -108,7 +108,7 @@ app.get('/webhook', function (req, res) {
   }
   res.send('Error, wrong validation token');
 });
-var messageData="";
+var messageData={};
 app.post('/webhook/', function (req, res) {
   messaging_events = req.body.entry[0].messaging;
   
@@ -121,6 +121,7 @@ app.post('/webhook/', function (req, res) {
 	   console.log(event.message);
 	   
 	   if(event.message.quick_reply){
+		   console.log("LOG");
 		   if(event.message.quick_reply.payload == "CREATE_USER"){
 					messageData = {
 					"text":"Are you :",
@@ -171,7 +172,7 @@ app.post('/webhook/', function (req, res) {
 			userExist = true;
 			console.log(res);
 		});
-		if(userExist) return;
+		if(userExist){
 		messageData = {
 		"text":"Would you like to subscribe:",
 		"quick_replies":[
@@ -186,11 +187,10 @@ app.post('/webhook/', function (req, res) {
 			"payload":"NO_CREATE_USER"
 		  }
 		]
-	  };
+		};
+	}
 		
-		
-		
-		sendMessage(senderID,tokenHTC,messageData);
+	sendMessage(senderID,tokenHTC,messageData);
 	}
   }
   res.sendStatus(200);
