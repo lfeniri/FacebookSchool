@@ -156,6 +156,9 @@ app.post('/webhook/', function (req, res) {
             "title":"1+2 = 3",
             "subtitle":"is this rigth?",
             "default_action": {
+				 "type":"postback",
+                "title":"HI",
+                "payload":"HI"
             },
             "buttons":[
               {
