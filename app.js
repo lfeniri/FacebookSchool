@@ -111,7 +111,7 @@ app.get('/subscribe', function (req, res) {
 		});
 	console.log("is Exist : " + exist);
 	if(!exist){
-		var std = new Student(req.query.id,req.query.last_name,first_name,[]);
+		var std = new Student(req.query.id,req.query.last_name,req.query.first_name,[]);
 		res.write("{'result':'OK'}");
 	}else{
 		res.write("{'result':'USER_EXIST'}");
