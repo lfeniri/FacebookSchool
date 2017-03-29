@@ -12,6 +12,27 @@
 		  js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
 		  fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'Messenger'));
+		
+		function validate(){
+			var last = $("#last_name").val();
+			var first = $("#first_name").val();
+			
+			$.ajax({
+            url : 'https://facebookschool.herokuapp.com/subscribe', 
+            dataType : 'text',
+            data : {
+				id:14526,
+                last_name: first,
+				first_name: last
+			},
+
+            success : function(donnee){
+				console.log(donnee);
+				}
+        });
+		}
+		
+		
 	</script>	
 	
 	
@@ -33,7 +54,7 @@
 	</ul>
 	<p>
         <button id="cancel">Cancel</button>
-        <button id="create" >Create</button>
+        <button id="create" onClick="validate()">Create</button>
     </p>
 	</form>
 	

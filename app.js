@@ -96,22 +96,27 @@ app.get('/webhook', function (req, res) {
   res.send('Error, wrong validation token');
 });
 
-app.get('/quiz', function (req, res) {
+app.get('/subscribe', function (req, res) {
 	res.setHeader('Content-Type', "text/html");
-  res.write("<html><head>"+
-    "<title>Select Criteria</title>"+
-  "</head>"+
-  "<body>"+
-  "<script>"+
-"(function(d, s, id){"+
-  "var js, fjs = d.getElementsByTagName(s)[0];"+
- " if (d.getElementById(id)) {return;}"+
- " js = d.createElement(s); js.id = id;"+
- " js.src = '//connect.facebook.com/en_US/messenger.Extensions.js';"+
- " fjs.parentNode.insertBefore(js, fjs);"+
-"}(document, 'script', 'Messenger'));"+
-"</script> </body>"+
-"</html>");
+	var exist = false;
+
+	Student.getStudent(senderID,function(res){
+			if(res == undefined) return;
+			exist = true;
+		});
+		
+		Teacher.getTeacher(senderID,function(res){
+		if(res == undefined) return;
+			exist = true;
+		});
+	console.log("is Exist : " + exist);
+	if(!exist){
+		var std = new Student(req.query.id,req.query.last_name,first_name,[]);
+		res.write("{'result':'OK'}");
+	}else{
+		res.write("{'result':'USER_EXIST'}");
+	}
+  
 	res.end();
 });
 
