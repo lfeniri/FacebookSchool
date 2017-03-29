@@ -152,7 +152,8 @@ app.post('/webhook/', function (req, res) {
 				});
 		   }
 			if(event.message.quick_reply.payload == "NO_CREATE_USER"){
-				sendMessage(senderID,tokenHTC,"THANK YOU");
+				messageData = {"text":"Would you like to subscribe:"}
+				sendMessage(senderID,tokenHTC,messageData);
 		   }
 		   return;
 	   }
