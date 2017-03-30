@@ -195,11 +195,10 @@ app.post('/webhook/', function (req, res) {
 					/******************************** OPTIONS FOR TEACHER ******************/
 					
 					if(send[senderID] == true){
-						console.log("YESSSSSSSSSSs");
+						Student.getAllStudents(function(students){});
 						send[senderID] = false;
-					}
 					
-					else if(event.message.quick_reply){
+					}else if(event.message.quick_reply){
 					if(event.message.quick_reply.payload == "SEND_MESSAGE"){
 					messageData = {
 							"text":"Write your message please"

@@ -37,6 +37,17 @@ Student.getStudent = function(id,callback){
 }	
 
 
+Student.getAllStudents = function(callback){
+	 model.find({}, 'id', function(err, students){
+        if(err){
+          console.log(err);
+        } else{
+            console.log('list of user ;');
+			
+        }
+    }); 
+}
+
 
 Student.prototype.print = function() {
 	console.log("id = " + this.id);
