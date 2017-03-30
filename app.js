@@ -8,8 +8,8 @@ mongoose.connect('mongodb://school:Lounes1993@ds029456.mlab.com:29456/school',fu
 });
 
 var bodyparser = require("body-parser");
-var Student = require("./Student");
 var Teacher = require("./Teacher");
+var Student = require("./Student");
 
 
 var tokenHTC = "EAABuaW7sR7QBAA3JbeMvU52cRkgl1a3vSAbu6k1bL2ZAMyTDLcv8HOK7tidv3QC5sAuHKSBZC1JEZCGWwVizzUZBMZCBzOAgEZCPLyzeP5DySYZBlKpGK4YiSR3pTIxk32lRt7rcUeDe5cIPv4EpNmUNcbi821Oa2uez8EB2ZB70mAZDZD";
