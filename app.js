@@ -199,7 +199,7 @@ app.post('/webhook/', function (req, res) {
 							 var j;
 							 console.log(students);
 							 for (j = 0; j < students.length; j++) {
-								console.log(students[i]._id);
+								console.log(students[j]._id);
 							 }
 						});
 						send[senderID] = false;
