@@ -170,6 +170,33 @@ app.post('/webhook/', function (req, res) {
 	   }
 		Student.getStudent(senderID,function(res){
 			if(res == undefined) {
+				Teacher.getTeacher(senderID,function(res){
+					if(res == undefined) {
+						if(!userExist){
+							messageData = {
+							"text":"Would you like to subscribe:",
+							"quick_replies":[
+							  {
+								"content_type":"text",
+								"title":"YES",
+								"payload":"CREATE_USER"
+							  },
+							  {
+								"content_type":"text",
+								"title":"NO",
+								"payload":"NO_CREATE_USER"
+							  }
+							]
+							};
+							sendMessage(senderID,tokenHTC,messageData);
+						return;
+					}
+					userExist = true;
+					messageData = {"text":"WELCOME TEACHER "+res.first_name+" :) "};
+					sendMessage(senderID,tokenHTC,messageData);
+					return;
+				});
+				
 				return ;
 			}
 			
@@ -179,31 +206,7 @@ app.post('/webhook/', function (req, res) {
 			sendMessage(senderID,tokenHTC,messageData);	
 		});
 		
-		Teacher.getTeacher(senderID,function(res){
-				if(res == undefined) return;
-				userExist = true;
-				messageData = {"text":"WELCOME TEACHER "+res.first_name+" :) "};
-				sendMessage(senderID,tokenHTC,messageData);
-				return;
-				});
-
-		if(!userExist){
-		messageData = {
-		"text":"Would you like to subscribe:",
-		"quick_replies":[
-		  {
-			"content_type":"text",
-			"title":"YES",
-			"payload":"CREATE_USER"
-		  },
-		  {
-			"content_type":"text",
-			"title":"NO",
-			"payload":"NO_CREATE_USER"
-		  }
-		]
-		};
-		sendMessage(senderID,tokenHTC,messageData);
+		
 	}
 	}
   }
