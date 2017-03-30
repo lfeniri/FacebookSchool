@@ -190,7 +190,7 @@ app.post('/webhook/', function (req, res) {
 							};
 							sendMessage(senderID,tokenHTC,messageData);
 						return;
-					}
+					}}
 					userExist = true;
 					messageData = {"text":"WELCOME TEACHER "+res.first_name+" :) "};
 					sendMessage(senderID,tokenHTC,messageData);
@@ -209,7 +209,6 @@ app.post('/webhook/', function (req, res) {
 		
 	}
 	}
-  }
   res.sendStatus(200);
 });
 
