@@ -164,8 +164,8 @@ app.post('/webhook/', function (req, res) {
 	   
 		Student.getStudent(senderID,function(res){
 			//if(res == undefined) return;
-			//userExist = true;
-			console.log("OKKKK");
+			userExist = true;
+			console.log("-------------------------------OKKKK");
 			
 		});
 		/*

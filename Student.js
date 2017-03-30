@@ -29,7 +29,7 @@ Student.prototype.addCourse = function(course) {
 Student.getStudent = function(id,callback){
 	model.findById(id, function (err, std) {
 		if (err) return handleError(err);
-		console.log(std);
+		console.log("Voiciiii :::::: "+std);
 	});  
 }	
 
