@@ -20,7 +20,7 @@ var m = model;
 
 Teacher.getTeacher = function(id,callback){
 	model.findById(id, function (err, std) {
-		if (err) callback(undefined);
+		if (err) {callback(undefined);return ;};
 		console.log("VOICIIIIIIIIIIIIIIIIIIIIIIIIIIII");
 		var s = new Teacher(std._id,std.last_name,std.first_name,std.courses);
 		callback(s);
