@@ -103,7 +103,7 @@ function sendMessage(sender,token, messageData) {
 }
 
 
-
+send = [];
 app.use(bodyparser.json());
 app.get('/webhook', function (req, res) {
 	
@@ -192,16 +192,42 @@ app.post('/webhook/', function (req, res) {
 						return;
 					}return ;}
 					userExist = true;
-					messageData = {"text":"WELCOME TEACHER "+res.first_name+" :) "};
+					/******************************** OPTIONS FOR TEACHER ******************/
+					
+					if(send[senderID] == true){
+						console.log("YESSSSSSSSSSs");
+						send[senderID] = false;
+					}
+					
+					else if(event.message.quick_reply){
+					if(event.message.quick_reply.payload == "SEND_MESSAGE"){
+					messageData = {
+							"text":"Write your message please"
+							};
+						send[senderID] = true;
+					}}else{
+					
+						messageData = {
+							"text":"Would you like to send message to students:",
+							"quick_replies":[
+							  {
+								"content_type":"text",
+								"title":"YES",
+								"payload":"SEND_MESSAGE"
+							  }
+							]
+							};
+					}
 					sendMessage(senderID,tokenHTC,messageData);
 					return;
 				});
-				
-				return ;
-			}
+				return;
+				}
 			
 			userExist = true;
 			console.log(res);
+			/******************************** OPTIONS FOR STUDENT ******************/
+			
 			messageData = {"text":"WELCOME STUDENT "+res.first_name+" :) "};
 			sendMessage(senderID,tokenHTC,messageData);	
 		});
