@@ -15,7 +15,7 @@ Student.model = function(){
 
 Student.prototype.save = function() {
 	mongoose.connect('mongodb://school:Lounes@ds029456.mlab.com:29456/school');
-	var m = Student.model():
+	var m = mongoose.model('student',{id:String,last_name:String,first_name:String,courses:[Number]});
 	var std = new m({id:this.id,last_name:this.last_name,first_name:this.first_name,courses:[]});
 	std.save(function (err) {
   if (err) {console.log(err);}else{console.log(" ----> SAVE OK ");}
