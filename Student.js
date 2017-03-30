@@ -30,8 +30,8 @@ Student.getStudent = function(id,callback){
 		if (err) {callback(undefined);return ;};
 		console.log("VOICIIIIIIIIIIIIIIIIIIIIIIIIIIII");
 		console.log(std);
-		//var s = new Student(std._id,std.last_name,std.first_name,std.courses);
-		//callback(s);
+		var s = new Student(std._id,std.last_name,std.first_name,std.courses);
+		callback(s);
 		
 	});  
 }	

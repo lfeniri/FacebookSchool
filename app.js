@@ -179,7 +179,14 @@ app.post('/webhook/', function (req, res) {
 			sendMessage(senderID,tokenHTC,messageData);	
 		});
 		
-		
+		Teacher.getTeacher(senderID,function(res){
+				if(res == undefined) return;
+				userExist = true;
+				messageData = {"text":"WELCOME TEACHER "+res.first_name+" :) "};
+				sendMessage(senderID,tokenHTC,messageData);
+				return;
+				});
+
 		if(!userExist){
 		messageData = {
 		"text":"Would you like to subscribe:",
