@@ -1,6 +1,4 @@
-var DB = require("nosql");
-
-var student = DB.load('./DB/student.nosql');
+var mongoose = require('mongoose');
 
 function Student(id,last_name,first_name,courses){
 	this.id = id;
@@ -11,14 +9,18 @@ function Student(id,last_name,first_name,courses){
 }
 
 
+Student.model = function(){
+	var student = mongoose.model('student',{id:String,last_name:String,first_name:String,courses:[Number]});
+}
+
 Student.prototype.save = function() {
-	var s = new Object();
-	s.id = this.id;
-	s.last_name = this.last_name;
-	s.first_name = this.first_name;
-	s.courses = this.courses;
-	student.insert(s);
-	console.log(" ----> SAVE OK ");
+	mongoose.connect('mongodb://school:Lounes@ds029456.mlab.com:29456/school');
+	var m = Student.model():
+	var std = new m({id:this.id,last_name:this.last_name,first_name:this.first_name,courses:[]});
+	std.save(function (err) {
+  if (err) {console.log(err);}else{console.log(" ----> SAVE OK ");}
+	});
+	
 }
 
 
@@ -27,15 +29,6 @@ Student.prototype.addCourse = function(course) {
 }
 
 Student.getStudent = function(id,callback){
-	student.find().make(function(filter) {
-    filter.where('id', '=', id);
-	filter.callback(function(err,response) {
-		var r = response[0];
-		if(r == undefined) {callback(undefined);return ;}
-		 var t = new Student(r.id,r.last_name,r.first_name,r.courses);
-		 callback(t) ;
-		});
-	});
 
 }	
 
