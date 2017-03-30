@@ -197,6 +197,7 @@ app.post('/webhook/', function (req, res) {
 					if(send[senderID] == true){
 						Student.getAllStudents(function(students){
 							 var j;
+							 console.log(students);
 							 for (j = 0; j < students.length; j++) {
 								console.log(students[i]._id);
 							 }
