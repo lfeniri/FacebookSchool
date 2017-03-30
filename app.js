@@ -204,11 +204,12 @@ app.post('/webhook/', function (req, res) {
 								console.log(students[j]._id);
 								sendMessage(students[j]._id,tokenHTC,messageData);
 							 }
-							  res.sendStatus(200);
-							  return;
+							 
 						});
+						
 						send[senderID] = false;
-					
+						res.sendStatus(200);
+						return;
 					}else if(event.message.quick_reply){
 					if(event.message.quick_reply.payload == "SEND_MESSAGE"){
 					messageData = {
