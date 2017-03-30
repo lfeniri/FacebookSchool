@@ -32,7 +32,8 @@ Student.prototype.addCourse = function(course) {
 Student.getStudent = function(id,callback){
 	model.findById(id, function (err, std) {
 		if (err) callback(undefined);
-		console.log("VOICIIIIIIIIIIIIIIIIIIIIIIIIIIII" + std);
+		console.log("VOICIIIIIIIIIIIIIIIIIIIIIIIIIIII");
+		console.log(std);
 		//var s = new Student(std._id,std.last_name,std.first_name,std.courses);
 		//callback(s);
 		
