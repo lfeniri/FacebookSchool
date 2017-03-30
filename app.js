@@ -195,6 +195,7 @@ app.post('/webhook/', function (req, res) {
 					/******************************** OPTIONS FOR TEACHER ******************/
 					
 					if(send[senderID] == true){
+						console.log("YESSSSSSSSSSSSS!!!");
 						Student.getAllStudents(function(students){
 							 var j;
 							 console.log(students);
@@ -208,8 +209,9 @@ app.post('/webhook/', function (req, res) {
 						});
 						
 						send[senderID] = false;
-						
-					}else if(event.message.quick_reply){
+						return;
+					}
+					if(event.message.quick_reply){
 					if(event.message.quick_reply.payload == "SEND_MESSAGE"){
 					messageData = {
 							"text":"Write your message please"
