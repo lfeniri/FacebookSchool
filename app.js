@@ -8,7 +8,7 @@ mongoose.connect('mongodb://school:Lounes1993@ds029456.mlab.com:29456/school',fu
 });
 
 var bodyparser = require("body-parser");
-var Teacher = require("./Teacher");
+var Teacher = require("./Teacher"); 
 var Student = require("./Student");
 
 
