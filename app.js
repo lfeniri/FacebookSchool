@@ -170,23 +170,13 @@ app.post('/webhook/', function (req, res) {
 	   }
 		Student.getStudent(senderID,function(res){
 			if(res == undefined) {
-				Teacher.getTeacher(senderID,function(res){
-				if(res == undefined) return;
-				userExist = true;
-				console.log();
-				messageData = {"text":"WELCOME TEACHER "+res.first_name+" :) "};
-				sendMessage(senderID,tokenHTC,messageData);
-				return;
-				});
-				return;
+				return ;
 			}
 			
 			userExist = true;
 			console.log(res);
 			messageData = {"text":"WELCOME STUDENT "+res.first_name+" :) "};
-			sendMessage(senderID,tokenHTC,messageData);
-			
-			
+			sendMessage(senderID,tokenHTC,messageData);	
 		});
 		
 		
