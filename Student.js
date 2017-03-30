@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-model = mongoose.model('student',{id:String,last_name:String,first_name:String,courses:[Number]});
+model = mongoose.model('student',{_id:String,last_name:String,first_name:String,courses:[Number]});
+mongoose.connect('mongodb://school:Lounes1993@ds029456.mlab.com:29456/school');
 
 function Student(id,last_name,first_name,courses){
 	this.id = id;
@@ -11,18 +12,18 @@ function Student(id,last_name,first_name,courses){
 
 
 Student.prototype.save = function() {
-	mongoose.connect('mongodb://school:Lounes1993@ds029456.mlab.com:29456/school');
+
 	
 	var m = model;
-	var std = new m({id:this.id,last_name:this.last_name,first_name:this.first_name,courses:[]});
+	var std = new m({_id:this.id,last_name:this.last_name,first_name:this.first_name,courses:[]});
 	std.save(function (err) {
   if (err) {console.log(err);}else{console.log(" ----> SAVE OK ");}
 	});
-	
 }
 
 Student.prototype.addCourse = function(course) {
 	this.courses.push(course);
+	
 }
 
 Student.getStudent = function(id,callback){
