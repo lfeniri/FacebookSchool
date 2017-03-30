@@ -100,6 +100,8 @@ function sendMessage(sender,token, messageData) {
 
 app.use(bodyparser.json());
 app.get('/webhook', function (req, res) {
+	
+	console.log(Student.model);
   if (req.query['hub.verify_token'] === 'test_verifier') {
     res.send(req.query['hub.challenge']);
   }
