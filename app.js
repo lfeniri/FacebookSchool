@@ -195,7 +195,12 @@ app.post('/webhook/', function (req, res) {
 					/******************************** OPTIONS FOR TEACHER ******************/
 					
 					if(send[senderID] == true){
-						Student.getAllStudents(function(students){});
+						Student.getAllStudents(function(students){
+							 var j;
+							 for (j = 0; j < students.length; i++) {
+								console.log(students[i]._id);
+							 }
+						});
 						send[senderID] = false;
 					
 					}else if(event.message.quick_reply){

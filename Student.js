@@ -42,9 +42,7 @@ Student.getAllStudents = function(callback){
         if(err){
           console.log(err);
         } else{
-            console.log('list of user ;');
-			console.log(students);
-			
+			callback(students);
         }
     }); 
 }
