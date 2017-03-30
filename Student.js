@@ -27,12 +27,13 @@ Student.prototype.addCourse = function(course) {
 }
 
 Student.getStudent = function(id,callback){
-	model.findById(id, function (err, std) {
+	model.findById(id, function (err, stdString) {
 		if (err) callback(undefined);
 		console.log("VOICIIIIIIIIIIIIIIIIIIIIIIIIIIII");
-		console.log(std);
-		//var s = new Student(std._id,std.last_name,std.first_name,std.courses);
-		//callback(s);
+		var std = JSON.parse(stdString);
+		//console.log(stdString);
+		var s = new Student(std._id,std.last_name,std.first_name,std.courses);
+		callback(s);
 	});  
 }	
 
