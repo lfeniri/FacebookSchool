@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
 model = mongoose.model('teacher',{_id:String,last_name:String,first_name:String,courses:[Number]});
-mongoose.connect('mongodb://school:Lounes1993@ds029456.mlab.com:29456/school');
+mongoose.connect('mongodb://school:Lounes1993@ds029456.mlab.com:29456/school',function(error){
+    if(error) console.log("ERREUR :: " + error);
+	console.log("connection successful");
+});
 
 function Teacher(id,last_name,first_name,courses){
 	this.id = id;
