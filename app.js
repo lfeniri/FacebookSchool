@@ -192,7 +192,7 @@ app.post('/webhook/', function (req, res) {
 		  }
 		]
 		};
-		//sendMessage(senderID,tokenHTC,messageData);
+		sendMessage(senderID,tokenHTC,messageData);
 	}
 	}
   }
