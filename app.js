@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var request = require("request");
-
+var mongoose = require('mongoose');
 mongoose.connect('mongodb://school:Lounes1993@ds029456.mlab.com:29456/school',function(error){
     if(error) console.log("ERREUR :: " + error);
 	console.log("connection successful");
