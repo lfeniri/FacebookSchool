@@ -112,6 +112,7 @@ app.post('/webhook/', function (req, res) {
   messaging_events = req.body.entry[0].messaging;
   
   var userExist = false;
+  console.log("LEN === "+messaging_events.length);
   for (i = 0; i < messaging_events.length; i++) {
     var event = req.body.entry[0].messaging[i];
     var senderID = event.sender.id;
