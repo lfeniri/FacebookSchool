@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-model = mongoose.model('student',{_id:String,last_name:String,first_name:String,courses:[Number]});
+	
 
 function Student(id,last_name,first_name,courses){
 	this.id = id;
@@ -26,6 +26,7 @@ Student.prototype.addCourse = function(course) {
 }
 
 Student.getStudent = function(id,callback){
+	console.log("THIS IS ID : "+id);
 	model.findById(id, function (err, std) {
 		if (err) {callback(undefined);return ;};
 		console.log("VOICIIIIIIIIIIIIIIIIIIIIIIIIIIII");
