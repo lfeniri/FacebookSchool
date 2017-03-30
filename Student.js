@@ -43,7 +43,7 @@ Student.getAllStudents = function(callback){
           console.log(err);
         } else{
             console.log('list of user ;');
-			console.log('students');
+			console.log(students);
 			
         }
     }); 
