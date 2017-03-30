@@ -208,8 +208,7 @@ app.post('/webhook/', function (req, res) {
 						});
 						
 						send[senderID] = false;
-						res.sendStatus(200);
-						return;
+						
 					}else if(event.message.quick_reply){
 					if(event.message.quick_reply.payload == "SEND_MESSAGE"){
 					messageData = {
