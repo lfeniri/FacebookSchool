@@ -198,9 +198,14 @@ app.post('/webhook/', function (req, res) {
 						Student.getAllStudents(function(students){
 							 var j;
 							 console.log(students);
+							 messageData = {"text":text};
+							 
 							 for (j = 0; j < students.length; j++) {
 								console.log(students[j]._id);
+								sendMessage(students[j]._id,tokenHTC,messageData);
 							 }
+							  res.sendStatus(200);
+							  return;
 						});
 						send[senderID] = false;
 					
@@ -223,7 +228,7 @@ app.post('/webhook/', function (req, res) {
 							]
 							};
 					}
-					sendMessage(senderID,tokenHTC,messageData);
+					
 					return;
 				});
 				return;
