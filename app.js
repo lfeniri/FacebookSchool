@@ -161,14 +161,14 @@ app.post('/webhook/', function (req, res) {
 		   }
 		  userExist = true;
 	   }
-	   /*
+	   
 		Student.getStudent(senderID,function(res){
-			if(res == undefined) return;
-			userExist = true;
-			console.log(res);
+			//if(res == undefined) return;
+			//userExist = true;
+			console.log("OKKKK");
 			
 		});
-		
+		/*
 		Teacher.getTeacher(senderID,function(res){
 			if(res == undefined) return;
 			userExist = true;
