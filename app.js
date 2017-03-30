@@ -162,20 +162,28 @@ app.post('/webhook/', function (req, res) {
 		   }
 		  userExist = true;
 	   }
-	   console.log("-----------------> DEBUT");
 		Student.getStudent(senderID,function(res){
-			if(res == undefined) return;
+			if(res == undefined) {
+				Teacher.getTeacher(senderID,function(res){
+				if(res == undefined) return;
+				userExist = true;
+				console.log();
+				messageData = {"text":"WELCOME TEACHER "+res.first_name+" :) "};
+				sendMessage(senderID,tokenHTC,messageData);
+				return;
+				});
+				return;
+			}
+			
 			userExist = true;
 			console.log(res);
+			messageData = {"text":"WELCOME STUDENT "+res.first_name+" :) "};
+			sendMessage(senderID,tokenHTC,messageData);
+			
 			
 		});
-		console.log("-----------------> FIN");
-		/*
-		Teacher.getTeacher(senderID,function(res){
-			if(res == undefined) return;
-			userExist = true;
-			console.log(res);
-		});*/
+		
+		
 		if(!userExist){
 		messageData = {
 		"text":"Would you like to subscribe:",

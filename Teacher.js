@@ -1,6 +1,6 @@
-var DB = require("nosql");
-
-var teacher = DB.load('./DB/teacher.nosql');
+var mongoose = require('mongoose');
+model = mongoose.model('teacher',{_id:String,last_name:String,first_name:String,courses:[Number]});
+mongoose.connect('mongodb://school:Lounes1993@ds029456.mlab.com:29456/school');
 
 function Teacher(id,last_name,first_name,courses){
 	this.id = id;
@@ -11,25 +11,22 @@ function Teacher(id,last_name,first_name,courses){
 
 
 Teacher.prototype.save = function() {
-var t = new Object();
-t.id = this.id;
-t.last_name = this.last_name;
-t.first_name = this.first_name;
-t.courses = this.courses;
-teacher.insert(t);
+var m = model;
+	var std = new m({_id:this.id,last_name:this.last_name,first_name:this.first_name,courses:[]});
+	std.save(function (err) {
+  if (err) {console.log(err);}else{console.log(" ----> SAVE OK ");}
+	});
 }
 
 
 Teacher.getTeacher = function(id,callback){
-	teacher.find().make(function(filter) {
-    filter.where('id', '=', id);
-	filter.callback(function(err,response) {
-		var r = response[0];
-		if(r == undefined) {callback(undefined);return ;}
-		 var t = new Teacher(r.id,r.last_name,r.first_name,r.courses);
-		 callback(t) ;
-		});
-	});
+	model.findById(id, function (err, std) {
+		if (err) callback(undefined);
+		console.log("VOICIIIIIIIIIIIIIIIIIIIIIIIIIIII");
+		var s = new Teacher(std._id,std.last_name,std.first_name,std.courses);
+		callback(s);
+		
+	}); 
 }	
 
 
