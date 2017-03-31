@@ -230,6 +230,7 @@ app.post('/webhook/', function (req, res) {
 							]
 							};
 					}
+					sendMessage(senderID,tokenHTC,messageData);	
 					
 					return;
 				});
