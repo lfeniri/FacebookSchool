@@ -40,6 +40,11 @@ You can find more options in menu :
 ![CLI Preview](imageDemo/menu.jpg);
 
 
+Teacher can send message for all students:
+![CLI Preview](imageDemo/sendMessage.jpg);
+
+
+
 ---
 
 ## License
