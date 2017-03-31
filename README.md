@@ -41,7 +41,7 @@ You can find more options in menu :
 
 
 Teacher can send message for all students:
-![CLI Preview](imageDemo/sendMessage.jpg);
+![CLI Preview](imageDemo/sendMessage.JPG);
 
 
 
